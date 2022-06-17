@@ -9,7 +9,6 @@ h1 {
 }
 
 body {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,9 +17,20 @@ body {
 textarea {
     height: 50vh;
     width: 70vw;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
+textarea:focus {
+    outline: none;
+}
+
 button {
-    width: 15vw;
+    width: 20vw;
+    padding: 5px;
+}
+
+#results {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
