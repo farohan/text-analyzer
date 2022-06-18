@@ -9,9 +9,15 @@ const textAnalyzer = {
     charCount: () => {
         return paper.value.length;
     },
-    wordCount: () => {
-        let trimmedPaper = paper.value.trim();
-        return Math.round(trimmedPaper.length / 5);
+    exclSpace: () => {
+
+    },
+    wordCount: (paper) => {
+        let numOfWords = paper.value.split(' ');
+        numOfWords = numOfWords.filter(function (str) {
+            return /\S/.test(str);
+        });
+        return numOfWords.length;
     },
     longestWord: (paper) => {
         let sorted = paper.value
@@ -31,12 +37,23 @@ const textAnalyzer = {
 
         return count;
     },
+    consonantCounter: (paper) => {
+        const consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'y', 'z'];
+
+        let count = 0;
+
+        for (let letter of paper.value.toLowerCase()) {
+            if (consonants.includes(letter)) 
+                count++;
+        }
+
+        return count;
+    },
     bagOfWords: () => {
     },
     uniqueWords: () => {
     }
 };
-
 
 document.title = textAnalyzer.name;
 const heading = document.querySelector('h1');
@@ -48,11 +65,15 @@ function showResults() {
     results.innerHTML = `
       <strong> Character Count (incl. spaces): </strong> ${textAnalyzer.charCount()}
       <br>
-      <strong> Word Count: </strong> ${textAnalyzer.wordCount()}
+      <strong> Character Count (excl. spaces): </strong> ${textAnalyzer.exclSpace()}
+      <br>
+      <strong> Word Count: </strong> ${textAnalyzer.wordCount(paper)}
       <br>
       <strong> Longest Word: </strong> ${textAnalyzer.longestWord(paper)}
       <br>
       <strong> Number of Vowels: </strong> ${textAnalyzer.vowelCounter(paper)}
+      <br>
+      <strong> Number of Consonants: </strong> ${textAnalyzer.consonantCounter(paper)}
       <br>
       <strong> Bag of Words: </strong> ${textAnalyzer.bagOfWords()}
       <br>
