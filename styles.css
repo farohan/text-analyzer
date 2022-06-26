@@ -34,3 +34,9 @@ button {
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+
+#assumptions {
+    text-align: center;
+    padding-left: 15vw;
+    padding-right: 15vw;
+}
